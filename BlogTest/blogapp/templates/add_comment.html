@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+</header>
+<!-- Home -->
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">Blog De Prueba</h2>
+        <span class="home-subtitle">Blog para testear funcionalidades de Django</span>
+    </div>
+</section>
+{% endblock %}
+
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="main-container">
+    <div class="comment-wrapper">
+        <h1>Añadir Comentario</h1>
+        <br><br>
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+        
+            <button type="submit" id="submit">Comentar</button>
+           
+        </form>
+    </div>
+  </div>
+  <script>
+        var name = "{{ user.id }}";
+    
+        document.getElementById("elder").value = name;
+  </script>
+
+{% else %}
+Tienes que estar registrado para comentar en la publicacion
+{% endif %}
+
+
+{% endblock %}

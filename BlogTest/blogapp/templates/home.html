@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+</header>
+<!-- Home -->
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">Blog De Prueba</h2>
+        <span class="home-subtitle">Blog para testear funcionalidades de Django</span>
+    </div>
+</section>
+{% endblock %}
+
+   {% block postFilter %}
+  <!--<div class="post-filter container">
+       <span class="filter-item active-filter" data-filter='all'>All</span>
+       <span class="filter-item" data-filter='gamig'>Programación</span>
+       <span class="filter-item" data-filter='tech'>Tech</span>
+       <span class="filter-item" data-filter='mobile'>Mobile</span>
+   </div>-->
+  {% endblock %}
+
+
+{% block content %}
+<div class="main-container">
+  <div class="post-wrapper">
+      {% for post in posts %}
+                 <!-- Post Box 1-->
+                 <div class="post-box">
+                   <img src={{ post.image.url }} alt="" class="post-img">
+                   <h2 class="category">{{ post.category }}</h2>
+                   <a href={% url 'post' post.id %} class="post-title">
+                       {{ post.title }}
+                   </a>
+                   <a href="#" class="post-date">{{ post.created|date:"d M Y" }}</a>
+                   <p class="post-decription">{{ post.exerpt }}</p>
+                   <!-- Profile -->
+                   <div class="profile">
+                       <!--<img src={% static 'blogapp/img/profile-1.jpg' %} alt="" class="profile-img">-->
+                       <a href={% url 'author' post.author.id %} class="profile-name">{{ post.author }}</a>
+                   </div>
+                 </div>
+
+                 {% endfor %}
+
+            
+
+
+
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+{% block paginaDe %}
+
+<div class="paginacion">
+  
+  {% if posts.has_previous %}
+  <a href="?page=1">Inicio</a>
+  <a href="?page={{ posts.previous_page_number }}"><i class='bx bxs-chevron-left'></i></a>
+  {% endif %}
+
+  {% for page in pages %}
+    <li class="page-item" {% if current_page == page %} active{% endif %}>
+      <a class="page-link" href="?page= {{ page }}">{{ page }}</a>
+
+    </li>
+
+  {% endfor %}
+
+  {% if posts.has_next %}
+  <a href="?page={{ posts.next_page_number }}"><i class='bx bxs-chevron-right'></i></a>
+  <a href="?page={{ posts.paginator.num_pages }}">Ultima</a>
+  {% endif %}
+
+</div>
+
+{% endblock %}
+
+    
+
+
+

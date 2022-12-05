@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+</header>
+<!-- Home -->
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">Blog De Prueba</h2>
+        <span class="home-subtitle">Blog para testear funcionalidades de Django</span>
+    </div>
+</section>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="main-container">
+    <div class="form-wrapper">
+        <h1>Te has desconectado, seras redirigido automaticamente...</h1>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    //Redireccionamiento tras 5 segundos
+    setTimeout( function() { window.location.href = "{% url 'home' %}"; }, 3000 );
+ </script>
+
+{% endblock %}

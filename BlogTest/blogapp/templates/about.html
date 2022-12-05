@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+</header>
+<!-- Home -->
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">Acerca de Nosotros</h2>
+        <span class="home-subtitle">Blog para testear funcionalidades de Django</span>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="post-content post-container">
+    <div class="post-text">
+        <h4>Acerca de</h4>
+        <p class="about-content">{{ ABOUT }}</p>
+    </div> 
+
+{% endblock %}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog de Prueba</title>
+    {% load static %}
+    <!-- Link to CSS-->
+    <link rel="stylesheet" href={% static 'css/style.css' %}>
+    <!--Box Icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+
+
+<body>
+    <!-- Header -->
+   <header>
+        <!-- Nav -->
+    <div class="nav">
+        <!-- Logo -->
+        <a href={% url 'home' %} class="logo">Info<span>2022</span></a>
+        <!-- Login Btn-->
+
+        <ul class="menu-horizontal"> 
+            <li><a href={% url 'home' %}>Inicio</a></li>
+            <li>
+                <a href="#">Categorias</a>
+                <ul class="menu-vertical">
+                    {% for item in categories %}
+                    <li>
+                        <a href={% url 'category' item.id %}>{{ item.name }}</a>
+                    </li>
+                    {% endfor %}
+                    
+                </ul>
+            </li>
+            <li><a href="#">Calendario</a></li>
+            <li>
+                <a href="#">Archivos</a>
+                <ul class="menu-vertical">
+                    {% for item in dates %}
+                    <li> 
+                        <!--<a href={% url 'dates' item.month item.year %}>{{ item.month }} - {{ item.year }}</a>-->
+                        
+                        {% if item.month == 1 %}<a href={% url 'dates' item.month item.year %}>Enero- {{ item.year }}</a>{% endif %}
+                        {% if item.month == 3 %}<a href={% url 'dates' item.month item.year %}>Marzo - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 3 %}<a href={% url 'dates' item.month item.year %}>Abril - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 5 %}<a href={% url 'dates' item.month item.year %}>Mayo - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 6 %}<a href={% url 'dates' item.month item.year %}>Junio - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 7 %}<a href={% url 'dates' item.month item.year %}>Julio - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 8 %}<a href={% url 'dates' item.month item.year %}>Agosto - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 9 %}<a href={% url 'dates' item.month item.year %}>Septiembre - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 10 %}<a href={% url 'dates' item.month item.year %}>Octubre - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 11 %}<a href={% url 'dates' item.month item.year %}>Noviembre - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 12 %}<a href={% url 'dates' item.month item.year %}>Diciembre - {{ item.year }}</a>{% endif %}
+                        {% if item.month == 2 %}<a href={% url 'dates' item.month item.year %}>Febrero - {{ item.year }}</a>{% endif %}
+                    </li>
+                    
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href={% url 'about' %}>Nosotros</a></li>
+            <li>
+                {% if request.user.is_authenticated %}
+                <a href="#">{{ user.username }}</a>
+                <ul class="menu-vertical">
+                    <li><a href="#">Editar Perfil</a></li>
+                    <li><a href="#">Configuracion</a></li>
+                    <li><a href="#">Soporte</a></li>
+                    <li><a href={% url 'logout' %} class="logout">Logout</a></li>
+                {% else %}
+                <a href={% url 'login' %} class="login">Login</a>
+                {% endif %}
+                </ul>
+            </li>
+        </ul>
+
+        <!--<div class="links">
+             <a href={% url 'home' %} class="link" >Inicio</a></li>
+             <a href="" class="link" >Categorias</a></li>
+             <a href="" class="link" >Calendario</a></li>
+             <a href={% url 'about' %} class="link" >Nosotros</a></li>
+             {% if request.user.is_authenticated %}
+             <a href={% url 'logout' %} class="link" >Logout</a></li>
+             {% else %}
+             <a href={% url 'login' %} class="login" >Login</a></li>
+             {% endif %}
+             
+             
+             
+        </div>-->
+        
+        <div class="toggle">
+            |||
+        </div>
+          
+    </div>
+
+    {% if messages %}
+            {% for message in messages %}
+                <div class="notification {{ message.tags }}">
+                    {{ message }}
+                </div>        
+            {% endfor %}
+
+        {% endif %}
+    
+    
+        {% block header %}
+        {% endblock %}
+
+        
+
+        <!-- Post Filter -->
+        {% block postFilter %} {% endblock %}
+
+
+        <!-- Post -->
+
+        {% block content %}
+        {% endblock %}
+
+
+        <!-- Navegacion entre articulos mas antiguos - Paginacion --> 
+
+        {% block paginaDe %}
+        {% endblock %}
+
+
+
+          
+
+        <!-- Footer -->
+        <div class="footer container">
+        <p>Seguinos en Nuestras Redes</p>
+        <div class="social">
+
+        
+            {% if LINK_FACEBOOK.url %}
+            <a href={{ LINK_FACEBOOK.url }}><i class="{{ LINK_FACEBOOK.icon }}"></i></a>
+            {% endif %}
+
+            {% if LINK_TWITTER.url %}
+            <a href={{ LINK_TWITTER.url }}><i class="{{ LINK_TWITTER.icon }}"></i></a>
+            {% endif %}
+            
+            {% if LINK_INSTAGRAM.url %}
+            <a href={{ LINK_INSTAGRAM.url }}><i class="{{ LINK_INSTAGRAM.icon }}"></i></a>
+            {% endif %}
+
+            {% if LINK_GITHUB.url %}
+            <a href={{ LINK_GITHUB.url }}><i class="{{ LINK_GITHUB.icon }}"></i></a>
+            {% endif %}
+
+            {% if LINK_TIKTOK.url %}
+            <a href={{ LINK_TIKTOK.url }}><i class="{{ LINK_TIKTOK.icon }}"></i></a>
+            {% endif %}
+
+        </div>
+        </div>
+      
+    <!-- JQuery Link -->
+    <script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+    <!-- Link to JS -->
+    <script src={% static '/js/main.js' %}></script>
+ </body>
+</html>
