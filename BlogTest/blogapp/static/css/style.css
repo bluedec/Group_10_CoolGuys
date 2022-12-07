@@ -227,10 +227,8 @@ header.shadow .toggle{
 .home{
     width: 100;
     min-height: 440px;
-    /*background: var(--container-color);*/
-    background-image: url("https://www.wallpapertip.com/wmimgs/41-414015_technology-background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: var(--container-color);
+    
     display: grid;
     justify-content: center;
     align-items: center;
@@ -405,10 +403,8 @@ p img{
 .post-header{
     width: 100%;
     height: 500px;
-    /*background: var(--container-color);*/
-    background-image: url("https://www.wallpapertip.com/wmimgs/41-414015_technology-background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: var(--container-color);
+    
 
 }
 
