@@ -1,6 +1,7 @@
 BlogTest/config/config.json
 BlogTest/config/
 /Blog-env
+virtual_env
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
