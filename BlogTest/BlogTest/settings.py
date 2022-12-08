@@ -9,16 +9,26 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import json
 import os
 from pathlib import Path
-
-
+from django.core.exceptions import ImproperlyConfigured
 
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+with open(os.path.join(BASE_DIR, 'config/config.json')) as config_file:
+    config = json.load(config_file)
+
+def get_config(setting, config = config ):
+    """Obtenemos la configuracion o falla capturando con ImproperlyConfigured"""
+    try:
+        return config[setting]
+    except KeyError:
+        raise ImproperlyConfigured("El atributo {} no es correcto".format(setting))
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,7 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogapp',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'events'
 ]
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
@@ -89,11 +100,11 @@ WSGI_APPLICATION = 'BlogTest.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'blog',
-            'USER': 'blog',
-            'PASSWORD': '35690819',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'NAME': get_config('DB_NAME'),
+            'USER': get_config('DB_USER'),
+            'PASSWORD': get_config('DB_PASSWORD'),
+            'HOST': get_config('DB_HOST'),
+            'PORT': get_config('DB_PORT'),
         }
     }
 
