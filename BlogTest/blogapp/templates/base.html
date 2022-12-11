@@ -69,6 +69,11 @@
                     <li><a href="#">Editar Perfil</a></li>
                     <li><a href="#">Configuracion</a></li>
                     <li><a href="#">Soporte</a></li>
+                    {% if user.is_superuser %}
+                    <li><a href={% url 'admin:index' %}>Admin</a></li>
+                    {% elif user.is_staff %}
+                    <li><a href={% url 'admin:index' %}>Staff</a></li>
+                    {% endif %}
                     <li><a href={% url 'logout' %} class="logout">Logout</a></li>
                 {% else %}
                 <a href={% url 'login' %} class="login">Login</a>
