@@ -25,6 +25,7 @@
 }
 body{
     padding-bottom: 100px;
+    
 }
 a{
     text-decoration: none;
@@ -42,9 +43,9 @@ section{
     padding: 2rem 0 2rem;
 }
 .container{
-    max-width: 1068px;
+    max-width: 1068px !important;
     margin: auto;
-    width: 100%;
+    width: 100% !important;
 }
 
 
@@ -486,6 +487,7 @@ blockquote{
 /* Paginación */
 .paginacion{
     /*background-color: whitesmoke;*/
+    
     display: flex;
     height: 75px;
     align-items: center;
@@ -499,15 +501,26 @@ blockquote{
 }
 
 .paginacion a{
+    border: 1px solid #ddd;
     width: 100px;
-    height: 80px;
-    line-height: 80px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
     color: var(--second-color);
     font-size: 19px;
     font-weight: 700;
     transition: .2s linear;
 }
+.page-item:hover {
+    background-color: var(--second-color);
+    color: white;
+  }
+
+.page-item:hover .page-link{
+    color: #fff;
+}
+
+
 
 /* Form Rgister */
 /*Form Elements*/
@@ -526,33 +539,36 @@ form {
     font-size: 1rem;
     width: 630px;
 }
-input {
-  width: 100%;
-  border: 0;
-  border-bottom: 2px solid #D3D8DC;
-  outline: 0;
-  background: #fff;
-  padding: 20px 0 4px;
-  margin: 0 0 20px;
-  color: #777B7E;
+button {
+    width: 250px;    
+    background-color: var(--second-color);
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
 }
-input:focus {
+
+button:hover {
   border-color: #7A9D96;
-  color: #2C3238;
+  background-color: #008CBA
 }
 textarea {
   width: 100%;
-  border: 0;
-  border-bottom: 2px solid #D3D8DC;
-  outline: 0;
-  background: #fff;
-  padding: 20px 0 4px;
-  margin: 0 0 20px;
-  color: #777B7E;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 1px solid rgb(132, 198, 243);
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
 }
 textarea:focus {
-  border-color: #7A9D96;
-  color: #2C3238;
+    outline: none !important;
+    border-color: #3178e2;
+    color: #141313;
 }
 button#submit {
   width: 100%;

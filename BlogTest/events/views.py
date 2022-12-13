@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 import calendar
 from calendar import HTMLCalendar
 from datetime import datetime
+from .models import Event, EventCategory
 
 # Create your views here.
 
@@ -33,3 +34,22 @@ def events(request, year=datetime.now(), month=datetime.now()):
             "current_year":current_year,
             "time":time,
         })
+
+
+def all_events(request):
+    event_list = Event.objects.all()
+    return render(request, 'event_list.html', {
+        'event_list': event_list
+    })
+
+
+def event_category(request, eventcategory_id):
+    #try:
+        event_category = get_object_or_404(EventCategory, id=eventcategory_id)
+        events = Event.objects.filter(event_category=eventcategory_id)
+        return render(request, 'event_category.html', {
+            'event_category':event_category, 
+            'events':events,
+            })
+    #except:
+    #    return render(request, '404.html')

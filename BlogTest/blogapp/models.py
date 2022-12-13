@@ -61,7 +61,7 @@ class Post(models.Model):
     exerpt = models.TextField(verbose_name='Bajada')
     #content = models.TextField(verbose_name='contenido')
     content = RichTextUploadingField(verbose_name='contenido')
-    image = models.ImageField(upload_to='posts', null=True, blank=True, verbose_name='Imagen')
+    image = models.ImageField(upload_to='posts', null=True, blank=False, verbose_name='Imagen')
     published = models.BooleanField(default=False, verbose_name='Publicado')
 
     #campos con relaciones

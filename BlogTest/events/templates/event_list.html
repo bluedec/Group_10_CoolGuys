@@ -1,0 +1,43 @@
+{% extends 'events.html' %}
+{% load static %}
+
+{% block header %}
+</header>
+<!-- Home -->
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">Eventos</h2>
+        <span class="home-subtitle">Lista de los eventos programados</span>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<br>
+<center>
+    {% for event in event_list %}
+    <ul>
+    <li>{{ event.name }}</li>
+    <li>{{ event.event_category }}</li>
+    <li>Fecha: {{ event.event_date }}</li>
+    <li>Lugar: {{ event.place }}</li>
+    <li>Descripcion: {{ event.description }}</li>
+    {% if event.mode == 1 %}<li>Modalidad: Online </li>{% endif %}
+    {% if event.mode == 2 %}<li> Modalidad: Presencial </li>{% endif %}
+    
+    {% if event.cost == 1 %}<li> Gratuito </li>{% endif %}
+    {% if event.cost == 2 %}<li> De pago </li>{% endif %}
+
+    
+    <li>{{ event.price }}</li>
+
+    </ul>
+    <br><br><br>
+    {% endfor %}
+    
+    <br><br><br>
+</center>
+{% endblock%}
+    
+  
