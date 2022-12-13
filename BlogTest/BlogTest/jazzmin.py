@@ -14,6 +14,7 @@ JAZZMIN_SETTINGS = {
         "blogapp.post":"fas fa-clipboard",
         "blogapp.link":"fas fa-thumbs-up",
         "events.event":"fas fa-calendar",
+        "events.eventcategory":"fas fa-bars",
 
     },
     

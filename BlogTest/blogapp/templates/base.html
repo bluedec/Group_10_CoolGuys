@@ -36,7 +36,16 @@
                     
                 </ul>
             </li>
-            <li><a href="#">Calendario</a></li>
+            <li>
+                <a href={% url 'events:list-events' %}>Eventos</a>
+                <ul class="menu-vertical">
+                    {% for item in event_categories %}
+                    <li>
+                        <a href={% url 'events:event_category' item.id %}>{{ item.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
             <li>
                 <a href="#">Archivos</a>
                 <ul class="menu-vertical">

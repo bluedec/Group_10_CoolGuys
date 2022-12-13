@@ -47,13 +47,6 @@ def post(request, post_id):
     #except:
     #    return render(request, '404.html')
         
-
-
-
- 
-    
-    
-
     
 
 #Filtrado por categoria

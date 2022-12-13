@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'blogapp',
     'ckeditor',
     'ckeditor_uploader',
-    'events'
+    'events',
 ]
 
 
@@ -92,6 +92,7 @@ TEMPLATES = [
                 'blogapp.processors.ctx_dic_about',
                 'blogapp.processors.ctx_dic_category',
                 'blogapp.processors.ctx_dic_history',
+                'events.processors.ctx_dic_category',
             ],
         },
     },

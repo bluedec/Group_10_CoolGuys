@@ -1,0 +1,54 @@
+{% extends 'events.html' %}
+{% load static %}
+
+{% block header %}
+</header>
+<!-- Home -->
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">{{ event_category }}</h2>
+        <span class="home-subtitle">Todos los post de esta Categoria</span>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+            {% for event in event_category.get_event.all %}
+                 <ul>
+                    <li>{{ event.name }}</li>
+                    <li>{{ event.category }}</li>
+                 </ul>   
+                 {% empty %}
+                 <div class="post-text" role="alert">
+                      <strong>No existen post con la categoria: {{ category }}</strong>
+                     
+            {% endfor %}
+
+
+{% endblock %}
+
+
+{% block paginaDe %}
+
+<div class="paginacion">
+  
+    {% if posts.has_previous %}
+        <a href="?page=1">Inicio</a>
+        <a href="?page={{ posts.previous_page_number }}"><i class='bx bxs-chevron-left'></i></a>
+    {% endif %}
+
+    {% for page in pages %}
+        <li class="page-item" {% if current_page == page %} active{% endif %}>
+        <a class="page-link" href="?page= {{ page }}">{{ page }}</a>
+        </li>
+    {% endfor %}
+
+    {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}"><i class='bx bxs-chevron-right'></i></a>
+        <a href="?page={{ posts.paginator.num_pages }}">Ultima</a>
+    {% endif %}
+
+</div>
+
+{% endblock %}
