@@ -62,21 +62,21 @@
 <div class="paginacion">
   
   {% if posts.has_previous %}
-  <a href="?page=1">Inicio</a>
-  <a href="?page={{ posts.previous_page_number }}"><i class='bx bxs-chevron-left'></i></a>
+  <li class="page-item"><a href="?page=1" class="page-item">Inicio</a></li>
+  <li class="page-item"><a href="?page={{ posts.previous_page_number }}" class="page-link"><i class='bx bxs-chevron-left'></i></a></li>
   {% endif %}
 
   {% for page in pages %}
     <li class="page-item" {% if current_page == page %} active{% endif %}>
-      <a class="page-link" href="?page= {{ page }}">{{ page }}</a>
+      <a class="page-link active" href="?page= {{ page }}">{{ page }}</a>
 
     </li>
 
   {% endfor %}
 
   {% if posts.has_next %}
-  <a href="?page={{ posts.next_page_number }}"><i class='bx bxs-chevron-right'></i></a>
-  <a href="?page={{ posts.paginator.num_pages }}">Ultima</a>
+  <li class="page-item"><a href="?page={{ posts.next_page_number }}" class="page-link"><i class='bx bxs-chevron-right'></i></a></li>
+  <li class="page-item"><a href="?page={{ posts.paginator.num_pages }}" class="page-link">Ultima</a></li>
   {% endif %}
 
 </div>

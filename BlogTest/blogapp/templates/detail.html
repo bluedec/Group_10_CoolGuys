@@ -2,6 +2,7 @@
 {% load static %}
 
 
+
 {% block content %}
 </header>
 <!-- Post Content -->
@@ -49,7 +50,7 @@
 
 <!-- Comments -->
 <hr>
-
+<center>
 {% with comments.count as total_comments %}
 <h2>
     {{ total_comments }} Comentario{{ total_comments|pluralize }}
@@ -85,10 +86,13 @@
     {% else %}
         <h2>Añade un comentario</h2>
         {{ user.username }}
+        
     <form method="post">
         {{ comment_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" onclick="validate(event)" value="Añadir Comentario"></p>
+        <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" class="btn btn-primary ">Enviar</button>
+        </div>
     </form>
 
 
@@ -103,6 +107,7 @@
 {% else %}
     <p> Necesitas estar registrado para comentar esta publicacion</p>
 {% endif %}
+</center>
 
 {% endblock %}
 
