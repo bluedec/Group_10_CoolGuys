@@ -4,6 +4,23 @@ from django.db import models
 from django.db import models
 
 # Create your models here.
+
+class EventCategory(models.Model):
+    name = models.CharField(max_length=200, unique=True, verbose_name='Nombre')
+    active = models.BooleanField(default=True, verbose_name='Activo')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Fecha de modificación')
+
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+
 event_mode = [
     (1, 'Online'),
     (2, 'Presencial')
@@ -18,12 +35,15 @@ event_cost =[
 
 class Event(models.Model):
     name = models.CharField('Nombre', max_length=120)
-    Event_date = models.DateTimeField('Fecha del Evento')
+    event_date = models.DateTimeField('Fecha del Evento')
     place = models.CharField('Lugar', max_length=120)
     description = models.TextField('Descripcion', blank=True)
+    updated = models.DateTimeField(auto_now=True, verbose_name='Fecha de modificación')
+    published = models.BooleanField(default=False, verbose_name='Publicado')
     mode = models.IntegerField('Modalidad',
         null=False,
         choices=event_mode
+    
     )
     cost = models.IntegerField('Costo',
         null=False,
@@ -34,5 +54,13 @@ class Event(models.Model):
         blank=True
         )
 
+    class Meta:
+        verbose_name = 'Evento'
+        verbose_name_plural = 'Eventos'
+        ordering = ['-event_date']
+
+    event_category = models.ForeignKey(EventCategory, on_delete=models.CASCADE, related_name='get_event', verbose_name='Categoria', null=True)
+
     def __str__(self):
         return self.name
+

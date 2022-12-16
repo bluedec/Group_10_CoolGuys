@@ -13,6 +13,7 @@ import json
 import os
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
+from .jazzmin import *
 
 
 
@@ -46,6 +47,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,8 +57,11 @@ INSTALLED_APPS = [
     'blogapp',
     'ckeditor',
     'ckeditor_uploader',
-    'events'
+    'events',
+    
+
 ]
+
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
@@ -86,6 +91,7 @@ TEMPLATES = [
                 'blogapp.processors.ctx_dic_about',
                 'blogapp.processors.ctx_dic_category',
                 'blogapp.processors.ctx_dic_history',
+                'events.processors.ctx_dic_category',
             ],
         },
     },
@@ -159,6 +165,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Definimos el login
 LOGIN_REDIRECT_URL = 'home'
+
+JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
+
+JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
 
 
