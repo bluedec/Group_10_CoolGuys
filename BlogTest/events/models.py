@@ -34,12 +34,17 @@ event_cost =[
 
 
 class Event(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField('Nombre', max_length=120)
     event_date = models.DateTimeField('Fecha del Evento')
+    end_date = models.DateTimeField(null=True, blank=True, verbose_name='Fecha de finalizacion')
     place = models.CharField('Lugar', max_length=120)
     description = models.TextField('Descripcion', blank=True)
+    image = models.ImageField(upload_to='Event', null=True, blank=True, verbose_name='Imagen')
     updated = models.DateTimeField(auto_now=True, verbose_name='Fecha de modificación')
     published = models.BooleanField(default=False, verbose_name='Publicado')
+    event_type = models.CharField(max_length=10, null=True, blank=True, verbose_name='Tipo')
+
     mode = models.IntegerField('Modalidad',
         null=False,
         choices=event_mode

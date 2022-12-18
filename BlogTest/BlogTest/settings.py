@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'events',
+    'django_social_share',
     
 
 ]
@@ -105,7 +106,7 @@ WSGI_APPLICATION = 'BlogTest.wsgi.application'
 
 DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.mysql',
             'NAME': get_config('DB_NAME'),
             'USER': get_config('DB_USER'),
             'PASSWORD': get_config('DB_PASSWORD'),
@@ -139,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'America/Argentina/Buenos_Aires'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

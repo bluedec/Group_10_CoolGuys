@@ -1,14 +1,15 @@
 from .models import About, Link, Category, Post
+from datetime import datetime, date
 
 # Los procesadores de contexto inyectan diccionarios en el archivo base
 
 # About
 def ctx_dic_about(request):
-     ctx_about = {}
+    ctx_about = {}
 
-     #ctx_about['ABOUT'] = About.objects.latest('created')
+    ctx_about['about'] = About.objects.latest('created')
 
-     return ctx_about
+    return ctx_about
 
 
 # Categorias
@@ -21,9 +22,7 @@ def ctx_dic_category(request):
 # Archivos
 def ctx_dic_history(request):
     ctx_history = {}
-    ctx_history = {}
     ctx_history['dates'] = Post.objects.dates('created', 'month', order='DESC').distinct()
-    
     return ctx_history
 
 # Redes Sociales

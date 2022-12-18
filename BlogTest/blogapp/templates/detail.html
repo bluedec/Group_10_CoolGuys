@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load social_share %}
 
 
 {% block content %}
@@ -38,12 +38,16 @@
 <!-- Share-->
 <div class="share post-container">
         <div class="social">
-            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-            <a href="#"><i class='bx bxl-twitter'></i></a>
-            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <p>Comparte:</p>
+            
+            {% post_to_twitter "Nuevo posteo: {{post.title}}" object_or_url "<i class='bx bxl-twitter'></i>" %}
+            {% post_to_facebook object_or_url "<i class='bx bxl-facebook-circle'></i>" %}
+            {% post_to_whatsapp object_or_url "<i class='bx bxl-whatsapp'></i>" %}
+            {% post_to_telegram "Nuevo posteo:{{post.title}}" object_or_url "<i class='bx bxl-telegram'></i>"%}
+            
         </div>
         <div class="share-category">
-            <p class="post-text"><a href={% url 'category' post.category.id %}>{{ post.category }}</a></p>
+            <p class="post-text">Categoria:<a href={% url 'category' post.category.id %}>{{ post.category }}</a></p>
         </div>
 </div>
 
@@ -67,17 +71,23 @@
     No hay comentarios todavia.</a>
 {% else %}
     {% for comment in post.comments.all %}
-    <p class="info">
-        <strong>{{ comment.name }} -
-        {{ comment.date_added }}</strong>
-        <br>
-        {{ comment.body}}
-        
-    </p>  
+    <div class="info">
+        <strong>{{ comment.name }} dice...</strong>
+        <div class="comment">
+            <p>{{ comment.body}}</p>
+        </div>
+        <div class="comment-date">
+            <p>{{ comment.date_added }}</p>
+        </div>
+    </div>
+    <div class="separator-comment"></div>
+     
     <br>
     {% endfor %}
 {% endif %}
 
+
+<div class="comment-section">
 {% if request.user.is_authenticated %}
     {% if new_comment %}
     <h2>
@@ -85,7 +95,7 @@
     </h2>
     {% else %}
         <h2>Añade un comentario</h2>
-        {{ user.username }}
+        <h4>{{ user.username }}</h4>
         
     <form method="post">
         {{ comment_form.as_p }}
@@ -94,6 +104,7 @@
         <button type="submit" class="btn btn-primary ">Enviar</button>
         </div>
     </form>
+    </div>
 
 
     <script>

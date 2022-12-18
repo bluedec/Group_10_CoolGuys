@@ -8,6 +8,8 @@
     {% load static %}
     <!-- Link to CSS-->
     <link rel="stylesheet" href={% static 'css/style.css' %}>
+    {% block extra_css %}
+    {% endblock %}
     <!--Box Icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
@@ -37,13 +39,20 @@
                 </ul>
             </li>
             <li>
-                <a href={% url 'events:list-events' %}>Eventos</a>
+                <a href="#">Eventos</a>
                 <ul class="menu-vertical">
-                    {% for item in event_categories %}
+                    <li><a href={% url 'events:list-events' %}>Todos</a></li>
                     <li>
-                        <a href={% url 'events:event_category' item.id %}>{{ item.name }}</a>
+                        <a href="">Categorias</a>
+                        <ul class="menu-vertical-2">
+                            {% for item in event_categories %}
+                            <li>
+                                <a class="li-2"  href={% url 'events:event_category' item.id %}>{{ item.name }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </li>
-                    {% endfor %}
+                    <li><a href={% url 'events:cal' %}>Calendario</a></li>
                 </ul>
             </li>
             <li>
@@ -51,7 +60,7 @@
                 <ul class="menu-vertical">
                     {% for item in dates %}
                     <li> 
-                        <!--<a href={% url 'dates' item.month item.year %}>{{ item.month }} - {{ item.year }}</a>-->
+                        
                         
                         {% if item.month == 1 %}<a href={% url 'dates' item.month item.year %}>Enero- {{ item.year }}</a>{% endif %}
                         {% if item.month == 3 %}<a href={% url 'dates' item.month item.year %}>Marzo - {{ item.year }}</a>{% endif %}
@@ -75,13 +84,10 @@
                 {% if request.user.is_authenticated %}
                 <a href="#">{{ user.username }}</a>
                 <ul class="menu-vertical">
-                    <li><a href="#">Editar Perfil</a></li>
-                    <li><a href="#">Configuracion</a></li>
-                    <li><a href="#">Soporte</a></li>
                     {% if user.is_superuser %}
-                    <li><a href={% url 'admin:index' %}>Admin</a></li>
+                    <li><a href={% url 'admin:index' %}>Panel Admin</a></li>
                     {% elif user.is_staff %}
-                    <li><a href={% url 'admin:index' %}>Staff</a></li>
+                    <li><a href={% url 'admin:index' %}>Panel Staff</a></li>
                     {% endif %}
                     <li><a href={% url 'logout' %} class="logout">Logout</a></li>
                 {% else %}
@@ -182,5 +188,7 @@
   crossorigin="anonymous"></script>
     <!-- Link to JS -->
     <script src={% static '/js/main.js' %}></script>
+    {% block extrajs %}
+    {% endblock %}
  </body>
 </html>
