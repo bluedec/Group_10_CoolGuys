@@ -14,7 +14,7 @@
 {% endblock %}
 
    {% block postFilter %}
-        <h2>Hello this is inside the postFilter </h2>
+        <!--<h2>Hello this is inside the postFilter </h2>-->
   <!--<div class="post-filter container">
        <span class="filter-item active-filter" data-filter='all'>All</span>
        <span class="filter-item" data-filter='gamig'>Programación</span>
@@ -46,7 +46,7 @@
 
                  {% endfor %}
 
-            
+
 
 
 
@@ -61,7 +61,7 @@
 {% block paginaDe %}
 
 <div class="paginacion">
-  
+
   {% if posts.has_previous %}
   <li class="page-item"><a href="?page=1" class="page-item">Inicio</a></li>
   <li class="page-item"><a href="?page={{ posts.previous_page_number }}" class="page-link"><i class='bx bxs-chevron-left'></i></a></li>
@@ -84,7 +84,7 @@
 
 {% endblock %}
 
-    
+
 
 
 

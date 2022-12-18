@@ -13,7 +13,7 @@ import json
 import os
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
-from .jazzmin import *
+
 
 
 
@@ -39,9 +39,9 @@ def get_config(setting, config = config ):
 SECRET_KEY ='yyjneti=qo-7@wqsbngx69%49*a+07b77i%12i&y+ulhj2eie-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['xene28.pythonanywhere.com']
 
 
 # Application definition
@@ -59,9 +59,37 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'events',
     'django_social_share',
-    
-
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Administración",
+
+    "site_brand": "BlogINFO",
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "blogapp.about":"fas fa-address-card",
+        "blogapp.category":"fas fa-bars",
+        "blogapp.comment":"fas fa-comment",
+        "blogapp.tag":"fas fa-tag",
+        "blogapp.post":"fas fa-clipboard",
+        "blogapp.link":"fas fa-thumbs-up",
+        "events.event":"fas fa-calendar",
+        "events.eventcategory":"fas fa-bars",
+
+    },
+
+
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "yeti",
+}
+
+
+
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
@@ -167,9 +195,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Definimos el login
 LOGIN_REDIRECT_URL = 'home'
 
-JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
 
-JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
 
 

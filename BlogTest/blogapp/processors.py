@@ -1,5 +1,5 @@
 from .models import About, Link, Category, Post
-from datetime import datetime, date
+
 
 # Los procesadores de contexto inyectan diccionarios en el archivo base
 
@@ -27,7 +27,7 @@ def ctx_dic_history(request):
 
 # Redes Sociales
 def ctx_dic_link(request):
-    
+
     ctx_link = {}
 
     links = Link.objects.all()
