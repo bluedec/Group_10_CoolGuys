@@ -72,7 +72,7 @@ class Post(models.Model):
 
 
 
-    created = models.DateTimeField(auto_now_add=True, null=True, verbose_name='Fecha de creación')
+    created = models.DateTimeField(auto_now_add=True, null=False, verbose_name='Fecha de creación')
     updated = models.DateTimeField(auto_now=True, verbose_name='Fecha de modificación')
 
     class Meta:
@@ -89,8 +89,8 @@ class Post(models.Model):
 
 # Modelo about
 class About(models.Model):
-    
-    description = models.CharField(max_length=350, verbose_name='Descripción')
+    #title = models.CharField(max_length=250, null=True, verbose_name='Titulo')
+    description = RichTextUploadingField(verbose_name='Descripción')
     #description = RichTextUploadingField(verbose_name='Descripción')
     #image = models.ImageField(upload_to='about', null=True, blank=True, verbose_name='Imagen')
     created = models.DateTimeField(auto_now_add=True, null=True, verbose_name='Fecha de creación')
@@ -101,6 +101,7 @@ class About(models.Model):
         verbose_name = 'Acerca de'
         verbose_name_plural = 'Acerca de Nosotros'
         ordering = ['-created']
+        
 
     def __str__(self):
         return self.description

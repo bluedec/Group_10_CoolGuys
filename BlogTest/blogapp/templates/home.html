@@ -35,7 +35,7 @@
                    <a href={% url 'post' post.id %} class="post-title">
                        {{ post.title }}
                    </a>
-                   <a href="#" class="post-date">{{ post.created|date:"d M Y" }}</a>
+                   <h2 class="post-date">{{ post.created|date:"d M Y" }}</h2>
                    <p class="post-decription">{{ post.exerpt }}</p>
                    <!-- Profile -->
                    <div class="profile">

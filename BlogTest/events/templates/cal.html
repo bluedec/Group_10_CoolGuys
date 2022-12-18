@@ -1,0 +1,89 @@
+{% extends 'events.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href={% static 'fullcalendar/lib/main.css' %}>
+{% endblock %}
+{% block header %}
+</header>
+<!-- Home -->
+
+<section class="home" id="home">
+    <div class="home-text container">
+        <h2 class="home-title">Calendario</h2>
+        <span class="home-subtitle">Eventos en {{ month }} - {{ year }}</span>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+<center>
+    
+<div id="calendar" class="container">
+    <br><br>
+</center>    
+
+    <center>
+        {{ cal|safe }}
+    <h3>Eventos de este Mes...</h3>
+    {% if event_list %}
+        {% for event in event_list %}
+        <center>
+            <div class="card-container">
+                <div class="card">
+                    <figure>
+                        {% if event.image %}
+                        <img src={{ event.image.url }}>
+                        {% endif %}
+                    </figure>
+                    <div class="contemido">
+                        <h3 class="cotenido-h3">{{ event.name }}</h3>
+                        <p class="contenido-p">{{ event.description }}</p>
+                        <p class="contenido-p">{{ event.event_date }}</p>
+                        <p class="contenido-p">{{ event.place }}</p>
+                        {% if event.mode == 1 %} <p class="contenido-p">Modalidad: Online</p>{% endif %}
+                        {% if event.mode == 2 %}<p class="contenido-p">Modalidad: Presencial</p>{% endif %}
+                        {% if event.cost == 1 %}<p class="contenido-p">Gratuito</p>{% endif %}
+                        {% if event.cost == 2 %}<p class="contenido-p">De pago</p>{% endif %}
+                        <p class="contenido-p">{{ event.price }}</p>
+                        <!--<a href="#" class="contenido-a">Leer Mas</a>-->
+            
+                    </div>
+                </div>
+            </div>
+            </center>
+        {% endfor %}
+    {% else %}
+    No hay eventos este mes
+    {% endif %}
+    <br><br><br><br>
+    {{ current_year }}
+</center>
+
+</div>
+ 
+
+
+
+{% endblock %}
+{% block extrajs %}
+<!--<script src={% static 'fullcalendar/lib/main.js' %}></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var calendarUI = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarUI,{
+            events: [
+            {% for i in events %}
+             {
+                  title: "{{ i.event_name}}",
+                  start: '{{ i.start_date|date:"Y-m-d" }}T{{ i.start_date|time:"H:i"}}',
+                 
+              },
+            {% endfor %}
+            ]
+        } );
+        calendar.render();
+        calendar.setOption('locale', 'es')
+    } );
+</script>-->
+{% endblock %}

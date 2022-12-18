@@ -18,8 +18,10 @@
 
 <div class="post-content post-container">
     <div class="post-text">
-        <h4>Acerca de</h4>
-        <p class="about-content">{{ ABOUT }}</p>
+        <h4>Acerca de </h4>
+        
+        <p class="about-content">{{ about.description|safe }}</p>
+        
     </div> 
 
 {% endblock %}

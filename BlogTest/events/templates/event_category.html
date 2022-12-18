@@ -15,27 +15,30 @@
 
 {% block content %}
             {% for event in event_category.get_event.all %}
-            <ul>
-                <li>{{ event.name }}</li>
-                <li>{{ event_category }}</li>
-                <li>Fecha: {{ event.event_date }}</li>
-                <li>Lugar: {{ event.place }}</li>
-                <li>Descripcion: {{ event.description }}</li>
-                {% if event.mode == 1 %}<li>Modalidad: Online </li>{% endif %}
-                {% if event.mode == 2 %}<li> Modalidad: Presencial </li>{% endif %}
+            <center>
+                <div class="card-container">
+                    <div class="card">
+                        <figure>
+                            {% if event.image %}
+                            <img src={{ event.image.url }}>
+                            {% endif %}
+                        </figure>
+                        <div class="contemido">
+                            <h3 class="cotenido-h3">{{ event.name }}</h3>
+                            <p class="contenido-p">{{ event.description }}</p>
+                            <p class="contenido-p">{{ event.event_date }}</p>
+                            <p class="contenido-p">{{ event.place }}</p>
+                            {% if event.mode == 1 %} <p class="contenido-p">Modalidad: Online</p>{% endif %}
+                            {% if event.mode == 2 %}<p class="contenido-p">Modalidad: Presencial</p>{% endif %}
+                            {% if event.cost == 1 %}<p class="contenido-p">Gratuito</p>{% endif %}
+                            {% if event.cost == 2 %}<p class="contenido-p">De pago</p>{% endif %}
+                            <p class="contenido-p">{{ event.price }}</p>
+                            <a href="#" class="contenido-a">Leer Mas</a>
                 
-                {% if event.cost == 1 %}<li> Gratuito </li>{% endif %}
-                {% if event.cost == 2 %}<li> De pago </li>{% endif %}
-            
-                
-                <li>{{ event.price }}</li>
-            
-                </ul>
-                <br><br><br>
-                 {% empty %}
-                 <div class="post-text" role="alert">
-                      <strong>No existen post con la categoria: {{ category }}</strong>
-                     
+                        </div>
+                    </div>
+                </div>
+                </center>
             {% endfor %}
 
 

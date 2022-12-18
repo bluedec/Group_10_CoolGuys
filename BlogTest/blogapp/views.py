@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
-from .models import Post, Category, Comment
+from .models import Post, Category, Comment, About
 from django.contrib.auth.models import User
 from .forms import UserRegisterForm, CommentForm
 from django.contrib import messages
 from django.views.generic import CreateView
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponse, HttpResponseRedirect
+
 
 
 #def home(request):
@@ -93,7 +94,7 @@ def dates(request, month_id, year_id):
 
 
 def about(request):
-    return render(request, 'about.html',)
+    return render(request, 'about.html')
 
 
 # Registro de usurarios
