@@ -6,7 +6,7 @@
 {% block content %}
 </header>
 <!-- Post Content -->
-<section class="post-header">
+<section class="post-header" style="background-image:url({{ post.image.url }})">
     <div class="header-content post-container">
         <!-- Back To Home-->
         <a href= {% url 'home' %} class="back-home">Regresar al Inicio</a>
@@ -30,7 +30,7 @@
     {% for tag in post.tags.all %}
          <span class="active-filter">{{ tag.name|upper }}</span>
     {% endfor %}
-   
+
 </section>
 
 <div class="separator"></div>
@@ -39,12 +39,12 @@
 <div class="share post-container">
         <div class="social">
             <p>Comparte:</p>
-            
+
             {% post_to_twitter "Nuevo posteo: {{post.title}}" object_or_url "<i class='bx bxl-twitter'></i>" %}
             {% post_to_facebook object_or_url "<i class='bx bxl-facebook-circle'></i>" %}
             {% post_to_whatsapp object_or_url "<i class='bx bxl-whatsapp'></i>" %}
             {% post_to_telegram "Nuevo posteo:{{post.title}}" object_or_url "<i class='bx bxl-telegram'></i>"%}
-            
+
         </div>
         <div class="share-category">
             <p class="post-text">Categoria:<a href={% url 'category' post.category.id %}>{{ post.category }}</a></p>
@@ -81,7 +81,7 @@
         </div>
     </div>
     <div class="separator-comment"></div>
-     
+
     <br>
     {% endfor %}
 {% endif %}
@@ -96,7 +96,7 @@
     {% else %}
         <h2>Añade un comentario</h2>
         <h4>{{ user.username }}</h4>
-        
+
     <form method="post">
         {{ comment_form.as_p }}
         {% csrf_token %}
@@ -108,7 +108,7 @@
 
 
     <script>
-    
+
         var name = "{{ user.id }}";
 
         document.getElementById("elder").value = name;
