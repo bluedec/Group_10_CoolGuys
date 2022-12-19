@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog de Prueba</title>
+    <title>Fundacion Pueblo</title>
     {% load static %}
     <!-- Link to CSS-->
-    
+
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     -->
         <link rel="stylesheet" href={% static 'css/style.css' %}>
         <!--Box Icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    
+
 </head>
 
 
@@ -27,7 +27,7 @@
         <a href={% url 'home' %} class="logo">Fundacion<span>Pueblo</span></a>
         <!-- Login Btn-->
 
-        <ul class="menu-horizontal"> 
+        <ul class="menu-horizontal">
             <li><a href={% url 'home' %}>Inicio</a></li>
             <li>
                 <a href="#">Categorias</a>
@@ -37,14 +37,14 @@
                         <a href={% url 'category' item.id %}>{{ item.name }}</a>
                     </li>
                     {% endfor %}
-                    
+
                 </ul>
             </li>
             <li>
                 <a href="#">Eventos</a>
                 <ul class="menu-vertical">
                     <li><a href={% url 'events:list-events' %}>Todos</a></li>
-                    
+
                     <li>
                         <a href="">Categorias</a>
                         <ul class="menu-vertical-2">
@@ -53,7 +53,7 @@
                                 <a class="li-2"  href={% url 'events:event_category' item.id %}>{{ item.name }}</a>
                             </li>
                             {% endfor %}
-                    
+
                         </ul>
                     </li>
                     <li><a href={% url 'events:cal' %}>Calendario</a></li>
@@ -63,9 +63,9 @@
                 <a href="#">Archivos</a>
                 <ul class="menu-vertical">
                     {% for item in dates %}
-                    <li> 
-                        
-                        
+                    <li>
+
+
                         {% if item.month == 1 %}<a href={% url 'dates' item.month item.year %}>Enero- {{ item.year }}</a>{% endif %}
                         {% if item.month == 3 %}<a href={% url 'dates' item.month item.year %}>Marzo - {{ item.year }}</a>{% endif %}
                         {% if item.month == 3 %}<a href={% url 'dates' item.month item.year %}>Abril - {{ item.year }}</a>{% endif %}
@@ -79,7 +79,7 @@
                         {% if item.month == 12 %}<a href={% url 'dates' item.month item.year %}>Diciembre - {{ item.year }}</a>{% endif %}
                         {% if item.month == 2 %}<a href={% url 'dates' item.month item.year %}>Febrero - {{ item.year }}</a>{% endif %}
                     </li>
-                    
+
                     {% endfor %}
                 </ul>
             </li>
@@ -111,31 +111,31 @@
              {% else %}
              <a href={% url 'login' %} class="login" >Login</a></li>
              {% endif %}
-             
-             
-             
+
+
+
         </div>-->
-        
+
         <div class="toggle">
             |||
         </div>
-          
+
     </div>
 
     {% if messages %}
             {% for message in messages %}
                 <div class="notification {{ message.tags }}">
                     {{ message }}
-                </div>        
+                </div>
             {% endfor %}
 
         {% endif %}
-    
-    
+
+
         {% block header %}
         {% endblock %}
 
-        
+
 
         <!-- Post Filter -->
         {% block postFilter %} {% endblock %}
@@ -147,21 +147,21 @@
         {% endblock %}
 
 
-        <!-- Navegacion entre articulos mas antiguos - Paginacion --> 
+        <!-- Navegacion entre articulos mas antiguos - Paginacion -->
 
         {% block paginaDe %}
         {% endblock %}
 
 
 
-          
+
 
         <!-- Footer -->
         <div class="footer container">
         <p>Seguinos en Nuestras Redes</p>
         <div class="social">
 
-        
+
             {% if LINK_FACEBOOK.url %}
             <a href={{ LINK_FACEBOOK.url }}><i class="{{ LINK_FACEBOOK.icon }}"></i></a>
             {% endif %}
@@ -169,7 +169,7 @@
             {% if LINK_TWITTER.url %}
             <a href={{ LINK_TWITTER.url }}><i class="{{ LINK_TWITTER.icon }}"></i></a>
             {% endif %}
-            
+
             {% if LINK_INSTAGRAM.url %}
             <a href={{ LINK_INSTAGRAM.url }}><i class="{{ LINK_INSTAGRAM.icon }}"></i></a>
             {% endif %}
@@ -184,7 +184,7 @@
 
         </div>
         </div>
-      
+
     <!-- JQuery Link -->
     <script
   src="https://code.jquery.com/jquery-3.6.1.js"
