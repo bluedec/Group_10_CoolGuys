@@ -724,7 +724,7 @@ button#submit:hover {
     align-items: revert;
     width: auto;
     max-width: 600px;
-    min-width: 450px;
+    min-width: 600px;
     justify-content: space-between;
 }
 
