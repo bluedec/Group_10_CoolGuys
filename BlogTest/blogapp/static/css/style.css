@@ -270,8 +270,6 @@ header.shadow .toggle{
     width: 100;
     min-height: 440px;
     background: var(--container-color);
-
-
     display: grid;
     justify-content: center;
     align-items: center;
@@ -279,12 +277,25 @@ header.shadow .toggle{
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: 39%;
+}
 
+.home::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2125294a;
+    opacity: 0.5;
+    height: 440px;
 
 }
+
 .home-text{
     color: var(--bg-color);
     text-align: center;
+    position: relative !important;
 }
 
 .home-title{
@@ -460,6 +471,18 @@ p img{
 
 
 }
+.post-header::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #212529;
+    opacity: 0.5;
+    height: inherit;
+
+}
 
 .post-container{
     max-width: 800px;
@@ -475,8 +498,9 @@ p img{
 }
 
 .back-home{
-    color: var(--second-color);
-    font-size: 0.9rem;
+    color: #ffff;
+    font-size: 1rem;
+    position: relative !important;
 }
 .header-title{
     width: 90%;
@@ -484,6 +508,7 @@ p img{
     color: var(--bg-color);
     text-align: center;
     margin-bottom: 1rem;
+    position: relative !important;
 }
 
 .header-img{
@@ -491,6 +516,7 @@ p img{
     height: 420px;
     object-fit: cover;
     object-position: center;
+    position: relative !important;
 }
 .post-content{
     margin-top: 10rem !important;
