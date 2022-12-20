@@ -349,13 +349,15 @@ header.shadow .toggle{
 
 }
 .post-box{
-
+    display: grid;
+    align-content: space-around;
     background: var(--bg-color);
     box-shadow: 0 4px 14px hsl(355deg  25%  15% / 10%);
     padding: 15px;
     border-radius: 0.5rem;
     height: 100%;
     margin: 0;
+
 
 }
 
@@ -407,6 +409,7 @@ p img{
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    min-height: 72px;
 }
 
 .profile{
