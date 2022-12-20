@@ -53,73 +53,85 @@
 
 
 <!-- Comments -->
-<hr>
-<center>
+
+<div class="separator"></div>
 {% with comments.count as total_comments %}
-<h2>
-    {{ total_comments }} Comentario{{ total_comments|pluralize }}
-</h2>
-{% endwith %}
-
-
-
-
-
-
-<br>
-{% if not post.comments.all %}
-    No hay comentarios todavia.</a>
-{% else %}
-    {% for comment in post.comments.all %}
-    <div class="info">
-        <strong>{{ comment.name }} dice...</strong>
-        <div class="comment">
-            <p>{{ comment.body}}</p>
-        </div>
-        <div class="comment-date">
-            <p>{{ comment.date_added }}</p>
-        </div>
-    </div>
-    <div class="separator-comment"></div>
-
-    <br>
-    {% endfor %}
-{% endif %}
-
-
-<div class="comment-section">
-{% if request.user.is_authenticated %}
-    {% if new_comment %}
+<div class="comment-counter">
     <h2>
-       Tu comentario se ha añadido
+        {{ total_comments }} Comentario{{ total_comments|pluralize }}
     </h2>
+</div>
+<div class="separator"></div>
+
+{% endwith %}
+<div class="comment-section">
+        {% if request.user.is_authenticated %}
+        {% if new_comment %}
+        <h2>
+           Tu comentario se ha añadido
+        </h2>
+        {% else %}
+            <div class="info">
+                <figure class="comment-figure">
+                    <img src="/BlogTest/blogapp/templates/media/Profile.png" alt="" class="img-thumbnail">
+                    <figcaption>{{ user.username }}</figcaption>
+                </figure>
+                <div class="comment-row">
+                    <div class="comment-form">
+                        <form method="post">
+                            {{ comment_form.as_p }}
+                            {% csrf_token %}
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn-primary ">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>  
+            </div>
+            
+           
+            <script>
+                var name = "{{ user.id }}";
+                document.getElementById("elder").value = name;
+            </script>
+         {% endif %}
+         {% else %}
+             <p> Necesitas estar registrado para comentar esta publicacion</p>
+         {% endif %}
+
+
+
+
+
+
+
+
+
+    {% if not post.comments.all %}
+        No hay comentarios todavia.</a>
     {% else %}
-        <h2>Añade un comentario</h2>
-        <h4>{{ user.username }}</h4>
-
-    <form method="post">
-        {{ comment_form.as_p }}
-        {% csrf_token %}
-        <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn btn-primary ">Enviar</button>
+        {% for comment in post.comments.all %}
+        <div class="info">
+            <figure class="comment-figure">
+                <img src="/BlogTest/blogapp/templates/media/Profile.png" alt="" class="img-thumbnail">
+                <figcaption>{{ comment.name }}</figcaption>
+            </figure>
+                <div class="comment-row">
+                    <div class="comment">
+                         <p>{{ comment.body}}</p>
+                    </div>
+                    <div class="comment-date">
+                        <a href="#">Reply</a>
+                        <span>{{ comment.date_added }}</span>
+                    </div>
+                </div>   
+                
         </div>
-    </form>
-    </div>
+        <div class="separator-comment"></div>
 
-
-    <script>
-
-        var name = "{{ user.id }}";
-
-        document.getElementById("elder").value = name;
-    </script>
-
-    {% endif %}
-{% else %}
-    <p> Necesitas estar registrado para comentar esta publicacion</p>
-{% endif %}
-</center>
-
+        {% endfor %}
+     {% endif %}
+</div>
 {% endblock %}
 
 
