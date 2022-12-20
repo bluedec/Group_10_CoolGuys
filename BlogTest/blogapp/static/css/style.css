@@ -535,6 +535,13 @@ p img{
     margin: 1rem 0;
     text-align: justify;
 }
+.post-text a{
+    color: #fff;
+    background: rgba(18, 74, 87, 0.5);
+    border-radius: 1px;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
 
 blockquote{
     font-size: 1.4rem;
