@@ -786,13 +786,13 @@ figure{
 }
 
 .img-thumbnail {
-    background-image: url('media/Profile.png');
+    background-image: url('media/profile2.png');
     background-size: cover;
     max-width: 100px;
     padding: 0.25rem;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-   /* border-radius: 50%;*/
+    /*background-color: #fff;*/
+    /*border: 1px solid #dee2e6;*/
+    /*border-radius: 50%;*/
     max-width: 100%;
     height: auto;
     min-width: 100px;
@@ -801,6 +801,7 @@ figure{
 
 figcaption{
     /*padding: 0 1.5rem;*/
+    text-align: center;
 }
 
 
