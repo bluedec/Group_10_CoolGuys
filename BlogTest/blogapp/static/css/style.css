@@ -383,7 +383,7 @@ p img{
 }
 
 .post-title{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: var(--text-color);
     /* To Remain Title In 2 Lines*/
@@ -391,6 +391,8 @@ p img{
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    max-height: 50px;
+    min-height: 50px;
 }
 
 .post-date{
