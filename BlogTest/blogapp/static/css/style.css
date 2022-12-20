@@ -718,6 +718,10 @@ button#submit:hover {
     box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
     border-radius: 5px;
 }
+.comment-section .comment-login{
+    text-align: center;
+    padding: 20px;
+}
 
 .comment-wrapper{
     display: grid;
