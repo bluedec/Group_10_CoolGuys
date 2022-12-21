@@ -1,33 +1,43 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block header %}
-</header>
-<!-- Home -->
-
-<section class="home" id="home">
-    <div class="home-text container">
-        <h2 class="home-title">Blog De Prueba</h2>
-        <span class="home-subtitle">Blog para testear funcionalidades de Django</span>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Crear Usuario</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/login.css' %}>
+  </head>
+  <body>
+    
+    <div class="center">
+      <h1>Registrate</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="txt_field">
+            {{ form.username }}
+          <span></span>
+          <label for="{{ form.username.id_for_label }}">Usuario</label>
+        </div>
+        <div class="txt_field">
+            {{ form.email }}
+          <span></span>
+          <label for="{{ form.email.id_for_label }}">Email</label>
+        </div>
+        <div class="txt_field">
+            {{ form.password1 }}
+          <span></span>
+          <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+        </div>
+        <div class="txt_field">
+            {{ form.password2 }}
+          <span></span>
+          <label for="{{ form.password2.id_for_label }}">Confirmar Contraseña</label>
+        </div>
+        <input type="submit" value="Registrarse">
+        <div class="signup_link">
+            Ya tienes cuenta? <a href={% url 'login' %}>Inicia Sesion</a>
+        </div>
+      </form>
     </div>
-</section>
-{% endblock %}
 
-
-
-{% block content %}
-
-<div class="main-container">
-    <div class="form-wrapper">
-        <form class="form" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-        
-            <button type="submit" id="submit">Registrarse</button>
-           
-        </form>
-    </div>
-  </div>
-
-
-{% endblock %}
+  </body>
+</html>

@@ -1,12 +1,13 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 from .models import Comment
 
 class UserRegisterForm(UserCreationForm):
-	email = forms.EmailField()
-	password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-	password2 = forms.CharField(label='Confirma Contraseña', widget=forms.PasswordInput)
+	username= forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''}))
+	email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': '' }))
+	password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '' }))
+	password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '' }))
 
 	class Meta:
 		model = User
@@ -52,4 +53,16 @@ class CommentForm(forms.ModelForm):
 			
 		}
 
-		
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+
+    username = UsernameField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Username', 'id': 'hello'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Contraseña',
+            'id': 'hi',
+        }
+))
