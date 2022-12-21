@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import Comment
 
 class UserRegisterForm(UserCreationForm):
-	username= forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''}))
+	username= forms.CharField(label='',max_length=10, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''}))
 	email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': '' }))
 	password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '' }))
 	password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '' }))
