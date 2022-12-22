@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 JAZZMIN_SETTINGS = {
     "site_title": "Administración",
 
-    "site_brand": "BlogINFO",
+    "site_brand": "FundacionPueblo",
 
     "icons": {
         "auth": "fas fa-users-cog",
@@ -80,12 +80,28 @@ JAZZMIN_SETTINGS = {
         "events.eventcategory":"fas fa-bars",
 
     },
+    "topmenu_links": [
 
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "home", "permissions": ["auth.view_user"]},
+
+        # external url that opens in a new window (Permissions can be added)
+        #{"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},{"model": "auth.Group"},
+
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "blogapp"},{"app": "events"}
+    ],
+    "show_sidebar": False,
 
 }
 
 JAZZMIN_UI_TWEAKS = {
-    "theme": "yeti",
+    "theme": "flaty",
+    "navbar_fixed": False,
 }
 
 
