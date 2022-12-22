@@ -9,23 +9,42 @@
 
 <section class="home" id="home">
     <div class="home-text container">
-        <h2 class="home-title">Calendario</h2>
-        <span class="home-subtitle">Eventos en {{ month }} - {{ year }}</span>
+        <h2 class="home-title">Eventos</h2>
+        <span class="home-subtitle">Agenda de Eventos</span>
     </div>
 </section>
 {% endblock %}
 
 {% block content %}
 
-<center>
+
     
-<div id="calendar" class="container">
+
     <br><br>
-</center>    
+
 
     <center>
-        {{ cal|safe }}
-    <h3>Eventos de este Mes...</h3>
+        <div class="month-button">
+            <a href="{% url 'events:calendar' prev_year prev_month %}" id="prev"><button class="prev" id="prev">Anterior</button></a>
+
+            {% if month_number == 1 %}<h2>Enero {{ year }}</h2>{% endif %}
+            {% if month_number == 2 %}<h2>Febrero {{ year }}</h2>{% endif %}
+            {% if month_number == 3 %}<h2>Marzo {{ year }}</h2>{% endif %}
+            {% if month_number == 4 %}<h2>Abril {{ year }}</h2>{% endif %}
+            {% if month_number == 5 %}<h2>Mayo {{ year }}</h2>{% endif %}
+            {% if month_number == 6 %}<h2>Junio {{ year }}</h2>{% endif %}
+            {% if month_number == 7 %}<h2>Julio {{ year }}</h2>{% endif %}
+            {% if month_number == 8 %}<h2>Agosto {{ year }}</h2>{% endif %}
+            {% if month_number == 9 %}<h2>Septiembre {{ year }}</h2>{% endif %}
+            {% if month_number == 10 %}<h2>Octubre {{ year }}</h2>{% endif %}
+            {% if month_number == 11 %}<h2>Noviembre {{ year }}</h2>{% endif %}
+            {% if month_number == 12 %}<h2>Diciembre {{ year }}</h2>{% endif %}
+            
+            <a href="{% url 'events:calendar' next_year next_month %}" id="next"><button class="next" id="next">Siguiente</button></a>
+        </div>
+
+        
+
     {% if event_list %}
         {% for event in event_list %}
         <center>
@@ -54,36 +73,23 @@
             </center>
         {% endfor %}
     {% else %}
-    No hay eventos este mes
+    <div class="card-container">
+        <span>No hay eventos este mes</span>
+    </div>
+    
+    
     {% endif %}
-    <br><br><br><br>
-    {{ current_year }}
 </center>
 
 </div>
- 
+
+
+<div id="calendar" class="container"></div>
+
+
+
 
 
 
 {% endblock %}
-{% block extrajs %}
-<!--<script src={% static 'fullcalendar/lib/main.js' %}></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function(){
-        var calendarUI = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarUI,{
-            events: [
-            {% for i in events %}
-             {
-                  title: "{{ i.event_name}}",
-                  start: '{{ i.start_date|date:"Y-m-d" }}T{{ i.start_date|time:"H:i"}}',
-                 
-              },
-            {% endfor %}
-            ]
-        } );
-        calendar.render();
-        calendar.setOption('locale', 'es')
-    } );
-</script>-->
-{% endblock %}
+

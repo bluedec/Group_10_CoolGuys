@@ -1,26 +1,29 @@
 from django.shortcuts import render, redirect, get_object_or_404
 import calendar
 from calendar import HTMLCalendar
+from django.views.generic import TemplateView
+from django.views import generic
 from datetime import datetime as dt, timedelta, date
 from .models import Event, EventCategory
 from django.http import HttpResponse
+from .forms import EventForm
 import json
+from django.utils.safestring import mark_safe
+from collections import defaultdict
 
 # Create your views here.
 
-def events(request, year=dt.now().year, month=dt.now().strftime('%B')):
+def events(request, year=dt.now().year, month=dt.now().strftime('%B'), day=dt.now().strftime('%d')):
     month = str(month).capitalize()
+   
     #convert month from name to number
     month_number = list(calendar.month_name).index(month)
     month_number = int(month_number)
-
+   
     #create a calendar
-
     cal = HTMLCalendar().formatmonth(
         year, 
         month_number,
-    
-        
         )
     #get current year
     now = dt.now()
@@ -29,49 +32,65 @@ def events(request, year=dt.now().year, month=dt.now().strftime('%B')):
     #Query the Events Model for Dates
     event_list = Event.objects.filter(
         event_date__year = year,
-        event_date__month = month_number
-    
+        event_date__month = month_number,
     )
 
-    all_events = Event.objects.all()
-    get_event_types = Event.objects.only('event_type')
+    event_days = defaultdict(list)
+    for event in event_list:
+        event_days[event.event_date.day].append(event)
 
-    if request.GET:
-        event_arr = []
-        if request.GET.get('event_type') == "all":
-            all_events = Event.objects.all()
-        else:
-            all_events = Event.objects.filter(event_type__icontains=request.GET.get('event_type'))
+    # Prev/Next month
+    prev_year = int(year)
+    next_year = int(year)
+    prev_month = int(month_number) - 1
+    next_month = int(month_number) + 1
+    if prev_month == 0:
+        prev_year -= 1
+        prev_month = 12
+    if next_month == 13:
+        next_year += 1
+        next_month = 1
 
-        for i in all_events:
-            event_sub_arr = {}
-            event_sub_arr['title'] = i.name
-            start_date = dt.strptime(str(i.event_date.date()), "%Y-%m-%dT%H:%M:%S").strftime("%Y-%m-%dT%H:%M:%S")
-            end_date = dt.strptime(str(i.end_date.date()), "%Y-%m-%dT%H:%M:%S").strftime("%Y-%m-%dT%H:%M:%S")
-            event_sub_arr['start'] = start_date
-            event_sub_arr['end'] = end_date
-            event_arr.append(event_sub_arr)
-        return HttpResponse(json.dumps(event_arr))
-
-    context = {
-        "events": all_events,
-        "get_event_types": get_event_types,
-
+    months ={
+        1:'January',
+        2:'February',
+        3:'March',
+        4:'April',
+        5:'May',
+        6:'June',
+        7:'July',
+        8:'August',
+        9:'September',
+        10:'October',
+        11:'November',
+        12:'December',
     }
-
+    if prev_month > 12 or prev_month < 1:
+        return render(request, '404.html')
+    if next_month > 12 or next_month < 1:
+        return render(request, '404.html')
 
     #get current time
     time = now.strftime('%I:%M %p')
-
+    print(prev_month)
+    print(next_month)
+    
     return render(request, 
         'cal.html',{
             "year": year,
             "month": month,
+            "day": day,
             "month_number": month_number,
             "cal":cal,
             "current_year":current_year,
             "time":time,
             "event_list": event_list,
+            "event_days": event_days,
+            "prev_month": months[prev_month],
+            "next_month": months[next_month],
+            "prev_year": prev_year,
+            "next_year": next_year,
+            
             
         },
         
@@ -96,3 +115,5 @@ def event_category(request, eventcategory_id):
     #except:
     #    return render(request, '404.html')
 
+
+    

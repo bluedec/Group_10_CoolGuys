@@ -639,7 +639,21 @@ form {
     font-size: 1rem;
     width: auto;
 }
+
 button {
+    /*width: 600px;*/
+    background-color: rgba(18, 74, 87, 0.5);
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
+.btn {
     width: 600px;
     background-color: rgba(18, 74, 87, 0.5);
     border: none;
@@ -649,6 +663,8 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
+    border-radius: 1px;
+    
 }
 
 button:hover {
@@ -847,13 +863,42 @@ figcaption{
     border: 1px solid #c6c6ec;
 }
 
+.month-button {
+    padding: 8px 40px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 50px;
+    background: rgba(18, 74, 87, 0.5);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    width: auto;
+    max-width: 1068px;
+}
+
+.month-button a{
+    /*background: rgba(18, 74, 87, 0.5);*/
+    color: #ffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+.month-button h2{
+    padding: 6px 0;
+    color: #ffff;
+}
 /* Events */
 .card-container{
     width: 100%;
     display: flex;
     max-width: 630px;
-
 }
+.card-container span{
+    padding: 0 108px;
+    margin: 60px 100px;
+    font-size: 17px;
+    line-height: 30px;
+    width: auto;
+}
+
 .card {
     width: 100%;
     margin: 20px;
